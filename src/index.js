@@ -27,6 +27,11 @@ app.get('/blog', function (req, res) {
   res.render('blog');
 });
 
+// contact page
+app.get('/contact', function (req, res) {
+  res.render('contact');
+});
+
 // statine direktorija, css, js, img ir kt statiniam failam
 const staticPath = path.join(__dirname, 'static');
 app.use(express.static(staticPath));
