@@ -4,6 +4,8 @@ const path = require('path');
 
 const PORT = 3000;
 
+// const pageRoutes = require('routes/pageRoutes');
+
 // register view engine
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
