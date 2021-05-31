@@ -19,8 +19,8 @@ app.get('/blog', function (req, res) {
   res.sendFile(path.join(__dirname, 'pages', 'blog.html'));
 });
 
-const staticPath = path.join(__dirname, 'static');
 // statine direktorija, css, js, img ir kt statiniam failam
+const staticPath = path.join(__dirname, 'static');
 app.use(express.static(staticPath));
 
 // 404 case - kai vartojas ivede psl kurio nera
