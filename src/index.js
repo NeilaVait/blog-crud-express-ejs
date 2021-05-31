@@ -12,24 +12,34 @@ app.set('views', 'src/views');
 app.get('/', function (req, res) {
   //   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
   // paimti index.ejs faila ir views direktorios
-  res.render('index');
+  res.render('index', {
+    title: 'Home',
+    page: 'home',
+  });
 });
 
 // about page
 app.get('/about', function (req, res) {
   res.render('about', {
-    title: 'About us',
+    title: 'About',
+    page: 'about',
   });
 });
 
 // blog page
 app.get('/blog', function (req, res) {
-  res.render('blog');
+  res.render('blog', {
+    title: 'Blog',
+    page: 'blog',
+  });
 });
 
 // contact page
 app.get('/contact', function (req, res) {
-  res.render('contact');
+  res.render('contact', {
+    title: 'Contact',
+    page: 'contact',
+  });
 });
 
 // statine direktorija, css, js, img ir kt statiniam failam
