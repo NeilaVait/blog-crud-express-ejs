@@ -17,7 +17,9 @@ app.get('/', function (req, res) {
 
 // about page
 app.get('/about', function (req, res) {
-  res.render('about');
+  res.render('about', {
+    title: 'About us',
+  });
 });
 
 // blog page
