@@ -8,6 +8,8 @@ const PORT = 3000;
 app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 
+const blogData = require('./data/sampleBlog');
+
 // home page
 app.get('/', function (req, res) {
   //   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
@@ -15,6 +17,7 @@ app.get('/', function (req, res) {
   res.render('index', {
     title: 'Home',
     page: 'home',
+    blogData,
   });
 });
 
