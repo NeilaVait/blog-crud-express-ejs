@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/NeilaVait/blog-crud-express-ejs#readme",
   "dependencies": {
+    "ejs": "^3.1.6",
     "eslint": "^7.27.0",
     "express": "^4.17.1"
   }
