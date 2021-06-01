@@ -1,19 +1,33 @@
+// import { post } from '../../../routes/pageRoutes';
+
 export default class MyFetch {
   static baseUrl = '/api/blog';
 
   constructor() {}
-
-  //   static getPosts() {
-  //     fetch(MyFetch.baseUrl)
-  //       .then((res) => res.json())
-  //       .then((data) => console.log(data))
-  //       .catch((err) => console.err(err.message));
-  //   }
 
   static async getPosts() {
     const res = await fetch(MyFetch.baseUrl);
     const data = await res.json();
     // console.log(data);
     return data;
+  }
+
+  /**
+   * method to create post
+   *
+   * @param {JSON} data // needs to be json format
+   */
+
+  static createPost(data) {
+    fetch(MyFetch.baseUrl, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.error(err.message));
   }
 }

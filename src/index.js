@@ -4,66 +4,27 @@ const path = require('path');
 
 const PORT = 3000;
 
-// const pageRoutes = require('routes/pageRoutes');
+const pageRoutes = require('./routes/pageRoutes');
+const apiRoutes = require('./routes/api/apiRoutes');
 
 // register view engine
 app.set('view engine', 'ejs');
+// nustatom render view home dir
 app.set('views', 'src/views');
+// for req.body() to work
+app.use(express.json());
 
-// const blogData = require('./data/sampleBlog');
-const blogDb = require('./data/blogDb');
+// pages routes
+app.use('/', pageRoutes);
 
-// home page
-app.get('/', function (req, res) {
-  //   res.sendFile(path.join(__dirname, 'pages', 'index.html'));
-  // paimti index.ejs faila ir views direktorios
-  res.render('index', {
-    title: 'Home',
-    page: 'home',
-  });
-});
-
-// about page
-app.get('/about', function (req, res) {
-  res.render('about', {
-    title: 'About',
-    page: 'about',
-  });
-});
-
-// blog page
-app.get('/blog', function (req, res) {
-  res.render('blog', {
-    title: 'Blog',
-    page: 'blog',
-    blogDb,
-  });
-});
-
-// contact page
-app.get('/contact', function (req, res) {
-  res.render('contact', {
-    title: 'Contact',
-    page: 'contact',
-  });
-});
-
-// blog create page
-app.get('/blog/create', function (req, res) {
-  res.render('createBlog', {
-    title: 'Create new post',
-    page: 'createB',
-  });
-});
-
-// statine direktorija, css, js, img ir kt statiniam failam
 const staticPath = path.join(__dirname, 'static');
+// statine direktorija, css, js, img ir kt statiniam failam
 app.use(express.static(staticPath));
 
-// blog api /api/blog gauti visus postus jsonu
-app.get('/api/blog', (req, res) => {
-  res.json(blogDb);
-});
+// isitraukti api routes ir panaudoti cia
+app.use('/api/blog', apiRoutes);
+
+// isitraukti api routes ir panaudoti cia kad veiktu
 
 // 404 case - kai vartojas ivede psl kurio nera
 app.use((req, res) => res.status(404).send('OOPs Page not found'));
