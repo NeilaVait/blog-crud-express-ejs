@@ -7,19 +7,16 @@ import MyFetch from './class/myFetch.class.js';
 const deleteBtn = document.getElementById('delete');
 
 // pasiimti id
-const deleteId = deleteBtn.dataset.postId;
-console.log(deleteId);
+const currentPostId = deleteBtn.dataset.postId;
 
 // fetch to delete
 
-deleteBtn.addEventListener('click', (event) => {
-  console.log('click');
-  event.preventDefault();
-
-  MyFetch.deletePost(deleteId, (ats) => {
-    if (ats.redirect) {
-      // console.log('redirecting to', ats.redirect);
-      window.location = ats.redirect;
+deleteBtn.addEventListener('click', () => {
+  MyFetch.deletePost(currentPostId, (res) => {
+    console.log(res);
+    if (res.redirect) {
+      // console.log('redirecting to', res.redirect);
+      window.location = res.redirect;
     }
   });
 });

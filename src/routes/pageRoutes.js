@@ -67,4 +67,19 @@ router.get('/single/:id', function (req, res) {
     .catch((err) => res.redirect('/blog'));
 });
 
+//singlePageEdit
+router.get('/single/edit/:id', function (req, res) {
+  const blogId = req.params.id;
+
+  Post.findById(blogId)
+    .then((post) => {
+      res.render('singlePageEdit', {
+        title: post.title,
+        page: 'edit',
+        post,
+      });
+    })
+    .catch((err) => console.error(err));
+});
+
 module.exports = router;
