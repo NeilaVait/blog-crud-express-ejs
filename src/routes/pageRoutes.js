@@ -24,12 +24,11 @@ router.get('/about', function (req, res) {
 
 router.get('/blog', function (req, res) {
   Post.find()
-    .then((result) => {
-      console.log(result);
+    .then((posts) => {
       res.render('blog', {
         title: 'Our blog',
         page: 'blog',
-        result,
+        posts,
       });
     })
     .catch((err) => console.error(err.message));
@@ -55,26 +54,17 @@ router.get('/blog/create', function (req, res) {
 // singlePage
 router.get('/single/:id', function (req, res) {
   const blogId = req.params.id;
-  const found = Post.find()
-    .then((result) => {
-      result.find((p) => p.id === +blogId);
-      console.log(found);
+
+  Post.findById(blogId)
+    .then((post) => {
       res.render('singlePage', {
-        title: 'Post about...',
+        title: post.title,
         page: 'single',
-        post: found,
+        post,
       });
     })
-    .catch((err) => console.error(err.message));
+    // redirect if not found
+    .catch((err) => res.redirect('/blog'));
 });
-
-// .find((p) => p.id === +blogId);
-//   // todo: redirect if not found or no id given
-//   console.log(found);
-//   res.render('singlePage', {
-//     title: 'Post about...',
-//     page: 'single',
-//     post: found,
-//   });
 
 module.exports = router;

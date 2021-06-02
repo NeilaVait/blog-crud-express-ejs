@@ -8,20 +8,6 @@ MyFetch.getPosts()
 
 // get all form data into json object and send it to backend
 
-// const newPostData = {
-//   title: 'New post about birds',
-//   auhtor: 'James Cameron',
-//   body: 'this is essential to know',
-// };
-
-// const jsonData = JSON.stringify(newPostData);
-// MyFetch.createPost(jsonData, (data) => {
-//   if (data.redirect) {
-//     console.log('redirecting to');
-//     // window.location = data.redirect;
-//   }
-// });
-
 const mainForm = document.getElementById('create-post-form');
 
 mainForm.addEventListener('submit', function (event) {
@@ -36,7 +22,11 @@ mainForm.addEventListener('submit', function (event) {
   console.log('whatIsInFormData', formDataJson);
   console.log('fd', fd);
 
-  MyFetch.createPost(formDataJson, (res) => {
-    console.log(res);
+  MyFetch.createPost(formDataJson, (ats) => {
+    console.log(ats);
+    if (ats.redirect) {
+      // console.log('redirecting to', ats.redirect);
+      window.location = ats.redirect;
+    }
   });
 });

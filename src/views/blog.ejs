@@ -6,7 +6,7 @@
             <div class="album py-5 bg-light">
                 <div class="container">
                     <div class="row">
-                        <% result.forEach(p=> { %>
+                        <% posts.forEach(p=> { %>
 
 
                             <!-- one card -->
@@ -32,7 +32,7 @@
                                                     class="btn btn-sm btn-outline-secondary">Edit</button>
                                             </div>
                                             <small class="text-muted">
-                                                <%- p.createdAt %>
+                                                <%- p.createdAt.toLocaleString() %>
                                             </small>
                                         </div>
                                     </div>
