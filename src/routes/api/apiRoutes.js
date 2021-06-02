@@ -21,9 +21,10 @@ router.post('/', (req, res) => {
     .catch((err) => res.status(400).json(err.message));
 });
 
-// // gauti viena posta
-// router.get('/api/blog/:id', (req, res) => {
-//   res.json(blogDb);
-// });
+router.delete('/:id', (req, res) => {
+  Post.findByIdAndRemove(req.params.id)
+    .then((result) => res.json({ msg: 'success', redirect: '/blog' }))
+    .catch((err) => res.status(400).json(err.message));
+});
 
 module.exports = router;

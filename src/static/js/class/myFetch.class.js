@@ -1,5 +1,3 @@
-// import { post } from '../../../routes/pageRoutes';
-
 export default class MyFetch {
   static baseUrl = '/api/blog';
 
@@ -28,6 +26,15 @@ export default class MyFetch {
     })
       .then((res) => res.json())
       .then((data) => successCallback(data))
+      .catch((err) => console.error(err.message));
+  }
+
+  static deletePost(id) {
+    fetch(MyFetch.baseUrl + '/' + id, {
+      method: 'DELETE',
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
       .catch((err) => console.error(err.message));
   }
 }
