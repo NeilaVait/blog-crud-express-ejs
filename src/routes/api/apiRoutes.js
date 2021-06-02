@@ -27,4 +27,10 @@ router.delete('/:id', (req, res) => {
     .catch((err) => res.status(400).json(err.message));
 });
 
+router.put('/:id', (req, res) => {
+  Post.findByIdAndUpdate(req.params.id, req.body)
+    .then((result) => res.json({ msg: 'success', redirect: '/blog' }))
+    .catch((err) => res.status(400).json(err.message));
+});
+
 module.exports = router;

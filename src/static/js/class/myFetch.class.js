@@ -41,8 +41,8 @@ export default class MyFetch {
       .catch((err) => console.error(err.message));
   }
 
-  static updatePost(data, successCallback) {
-    fetch(MyFetch.baseUrl, {
+  static updatePost(data, currentPostId, successCallback) {
+    fetch(`${MyFetch.baseUrl}/${currentPostId}`, {
       method: 'PUT',
       headers: {
         'content-type': 'application/json',
