@@ -75,7 +75,7 @@ router.get('/single/edit/:id', function (req, res) {
     .then((post) => {
       res.render('singlePageEdit', {
         title: post.title,
-        page: 'edit',
+        page: 'single_edit',
         post,
       });
     })
