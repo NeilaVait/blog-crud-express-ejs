@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const blogDb = require('../data/blogDb');
+const Post = require('../models/post');
 
 // home page
 router.get('/', function (req, res) {
@@ -21,12 +21,18 @@ router.get('/about', function (req, res) {
 });
 
 // blog page
+
 router.get('/blog', function (req, res) {
-  res.render('blog', {
-    title: 'Our blog',
-    page: 'blog',
-    blogDb,
-  });
+  Post.find()
+    .then((result) => {
+      console.log(result);
+      res.render('blog', {
+        title: 'Our blog',
+        page: 'blog',
+        result,
+      });
+    })
+    .catch((err) => console.error(err.message));
 });
 
 // contact page
@@ -49,14 +55,26 @@ router.get('/blog/create', function (req, res) {
 // singlePage
 router.get('/single/:id', function (req, res) {
   const blogId = req.params.id;
-  const found = blogDb.find((p) => p.id === +blogId);
-  // todo: redirect if not found or no id given
-  console.log(found);
-  res.render('singlePage', {
-    title: 'Post about...',
-    page: 'single',
-    post: found,
-  });
+  const found = Post.find()
+    .then((result) => {
+      result.find((p) => p.id === +blogId);
+      console.log(found);
+      res.render('singlePage', {
+        title: 'Post about...',
+        page: 'single',
+        post: found,
+      });
+    })
+    .catch((err) => console.error(err.message));
 });
+
+// .find((p) => p.id === +blogId);
+//   // todo: redirect if not found or no id given
+//   console.log(found);
+//   res.render('singlePage', {
+//     title: 'Post about...',
+//     page: 'single',
+//     post: found,
+//   });
 
 module.exports = router;

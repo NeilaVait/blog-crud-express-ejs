@@ -2,7 +2,9 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-const PORT = 3000;
+const mongoose = require('mongoose');
+const { mongoDbString } = require('./config/config');
+const Post = require('./models/post');
 
 const pageRoutes = require('./routes/pageRoutes');
 const apiRoutes = require('./routes/api/apiRoutes');
@@ -13,6 +15,17 @@ app.set('view engine', 'ejs');
 app.set('views', 'src/views');
 // for req.body() to work
 app.use(express.json());
+
+mongoose
+  .connect(mongoDbString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then((result) => {
+    console.log('mongoose connected');
+    app.listen(3000);
+  })
+  .catch((err) => console.error(err.message));
 
 // pages routes
 app.use('/', pageRoutes);
@@ -28,5 +41,3 @@ app.use('/api/blog', apiRoutes);
 
 // 404 case - kai vartojas ivede psl kurio nera
 app.use((req, res) => res.status(404).send('OOPs Page not found'));
-
-app.listen(PORT);
