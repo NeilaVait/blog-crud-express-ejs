@@ -2,6 +2,11 @@
 <%- include("../partials/nav.ejs") %>
 
 <main role="main">
+  <% if (locals.result) { %>
+  <div class="alert alert-success" role="alert">
+    Owner created : <%= result.name %>
+  </div>
+  <% } %>
   <h1>This is the owners page</h1>
   <h2>Our owners list</h2>
 
