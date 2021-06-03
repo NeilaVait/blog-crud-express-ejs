@@ -30,6 +30,22 @@ mongoose
 // pages routes
 app.use('/', pageRoutes);
 
+//    kas ivesta i adresa
+app.get('/owners', (req, res) => {
+  //            koks kelias
+  res.render('owners/index', {
+    title: 'Owners',
+    page: 'owners',
+  });
+});
+
+app.get('/owners/new', (req, res) => {
+  res.render('owners/new', {
+    title: 'Add owner',
+    page: 'owners_new',
+  });
+});
+
 const staticPath = path.join(__dirname, 'static');
 // statine direktorija, css, js, img ir kt statiniam failam
 app.use(express.static(staticPath));
