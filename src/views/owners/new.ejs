@@ -3,15 +3,22 @@
 
 <main role="main">
 
-  <% if (locals.result) { %>
-  <div class="alert alert-success" role="alert">
-    Owner created : <%= result.name %>
-  </div>
-  <% } %>
+  <h1 class="mb-3">Add new owner</h1>
+
+  <form id="create-post-form" action="/owners/new" method="POST">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input required type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input required type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+    </div>
 
 
-  <h1>add new owner</h1>
-  <h2>sample form</h2>
+    <button type="submit" class="btn btn-primary">Save owner</button>
+  </form>
+
 </main>
 
 <%- include("../partials/footer.ejs") %>
