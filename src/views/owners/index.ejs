@@ -8,16 +8,28 @@
   </div>
   <% } %>
   <h1>This is the owners page</h1>
-  <h2>Our owners list</h2>
+  <h2>Our owners list <a class="btn btn-info float-right" <%= page === 'owners_new' ? 'active' : "" %> " href="
+      /owners/new">Add owner</a></h2>
 
   <ol class="list-group">
     <% owners.forEach(o=> { %>
 
-    <li class="list-group-item">
-      name: <%= o.name %>,
-      email: <%= o.email %>
-      <!-- <button class="btn btn-primary">View</button> -->
+    <li class="list-group-item d-flex justify-content-between">
+      <div>
+        name: <%= o.name %>,
+        email: <%= o.email %>
+        <small><%= o.createdAt.toLocaleTimeString() %></small>
+      </div>
+
+      <div>
+        <a href="/owners/single/<%= o._id %>" class="btn btn-primary float-right">View</a>
+        <form action="/owners/delete/id" method="delete">
+          <button class="btn btn-danger float-right mt-2">Delete</button>
+        </form>
+      </div>
     </li>
+
+
 
     <% }) %>
   </ol>

@@ -1,0 +1,24 @@
+<!-- vieno ownerio html -->
+<!-- /owners/single/id -->
+<!-- router.get path  /owners/single/id kaip page routes single page route -->
+<!-- panaudoti findbyid ir gauti esamo ownerio objekta -->
+<!-- perduoti objekta i single view ir atvaizduoti info -->
+
+<%- include("../partials/head.ejs") %>
+<!-- ikeliam bendra navigacijos faila -->
+<%- include("../partials/nav.ejs") %>
+
+<h1>Single owner page</h1>
+
+<section class="jumbotron text-center" data-post-id="<%= owner._id %>">
+  <div class="container">
+    <h1>Name:
+      <%= owner.name %>
+    </h1>
+    <h2>Email:
+      <%= owner.email %>
+    </h2>
+  </div>
+</section>
+
+<%- include("../partials/footer.ejs") %>
