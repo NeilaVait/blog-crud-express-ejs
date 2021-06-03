@@ -1,50 +1,49 @@
 <%- include("./partials/head.ejs") %>
-    <%- include("./partials/nav.ejs") %>
+<%- include("./partials/nav.ejs") %>
 
-        <main role="main">
-            <h1>Read our blog</h1>
-            <div class="album py-5 bg-light">
-                <div class="container">
-                    <div class="row">
-                        <% posts.forEach(p=> { %>
+<main role="main">
+    <h1>Read our blog</h1>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <% posts.forEach(p=> { %>
 
 
-                            <!-- one card -->
+                <!-- one card -->
 
-                            <div class="col-md-4">
-                                <div class="card mb-4 shadow-sm">
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
 
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <%- p.title %>
-                                        </h5>
-                                        <h6 class="text-muted">
-                                            <%- p.author %>
-                                        </h6>
-                                        <p class="card-text">
-                                            <%- p.body %>
-                                        </p>
-                                        <div class="d-flex flex-column justify-content-between align-items-center">
-                                            <div class="btn-group">
-                                                <a href="/single/<%= p.id %> "
-                                                    class="btn btn-sm btn-outline-secondary">View</a>
-                                                <!-- <button type="button"
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%- p.title %>
+                            </h5>
+                            <h6 class="text-muted">
+                                <%- p.author %>
+                            </h6>
+                            <p class="card-text">
+                                <%- p.body %>
+                            </p>
+                            <div class="d-flex flex-column justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="/single/<%= p.id %> " class="btn btn-sm btn-outline-secondary">View</a>
+                                    <!-- <button type="button"
                                                     class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                                            </div>
-                                            <small class="text-muted">
-                                                <%- p.createdAt.toLocaleString() %>
-                                            </small>
-                                        </div>
-                                    </div>
                                 </div>
+                                <small class="text-muted">
+                                    <%- p.createdAt.toLocaleString() %>
+                                </small>
                             </div>
-
-                            <!-- one card end -->
-
-                            <% }) %>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
 
-        <%- include("./partials/footer.ejs") %>
+                <!-- one card end -->
+
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</main>
+
+<%- include("./partials/footer.ejs") %>
