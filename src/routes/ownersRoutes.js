@@ -19,7 +19,16 @@ router.get('/', (req, res) => {
     .catch((err) => console.error(err.message));
 });
 
+// formos parodymo route
 router.get('/new', (req, res) => {
+  res.render('owners/new', {
+    title: 'Add owner',
+    page: 'owners_new',
+  });
+});
+
+// formos apdorojimo route
+router.post('/new', (req, res) => {
   // sukurti tris naujus ownerius
   const o1 = { name: 'jane', email: 'jane@email.com' };
   const newOwner = new Owner({
