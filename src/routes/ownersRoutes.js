@@ -4,8 +4,10 @@ const router = express.Router();
 const Owner = require('../models/owner');
 
 router.get('/', (req, res) => {
-  // get all owners from db
+  // was there a delete
+  const deleteMsg = req.query.delete;
 
+  // get all owners from db
   Owner.find()
     .sort({ createdAt: -1 })
     .then((owners) => {
@@ -13,9 +15,10 @@ router.get('/', (req, res) => {
         title: 'Owners',
         page: 'owners',
         owners,
+        msg: deleteMsg,
       });
     })
-    .catch((err) => console.error(err.message));
+    .catch((err) => console.error(err));
 });
 
 // formos parodymo route
@@ -53,6 +56,13 @@ router.get('/single/:id', function (req, res) {
     })
     // redirect if not found
     .catch((err) => console.error(err));
+});
+
+// delete form
+router.post('/delete/:id', (req, res) => {
+  Owner.findByIdAndDelete(req.params.id)
+    .then((result) => res.redirect('/owners?delete=true'))
+    .catch((err) => res.send(`delete failed ${err}`));
 });
 
 module.exports = router;

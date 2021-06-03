@@ -7,8 +7,15 @@
     Owner created : <%= result.name %>
   </div>
   <% } %>
+
+  <% if (locals.msg) { %>
+  <div class="alert alert-danger" role="alert">
+    Owner Deleted, Sad
+  </div>
+  <% } %>
+
   <h1>This is the owners page</h1>
-  <h2>Our owners list <a class="btn btn-info float-right" <%= page === 'owners_new' ? 'active' : "" %> " href="
+  <h2>Our owners list <a class="btn btn-info float-right" <%= page === 'owners_new' ? 'active' : "" %> href="
       /owners/new">Add owner</a></h2>
 
   <ol class="list-group">
@@ -23,8 +30,8 @@
 
       <div>
         <a href="/owners/single/<%= o._id %>" class="btn btn-primary float-right">View</a>
-        <form action="/owners/delete/id" method="delete">
-          <button class="btn btn-danger float-right mt-2">Delete</button>
+        <form action="/owners/delete/<%= o._id %>" method="POST">
+          <button class="btn btn-danger float-right mt-2" type="submit">Delete</button>
         </form>
       </div>
     </li>
