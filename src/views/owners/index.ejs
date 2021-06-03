@@ -3,6 +3,20 @@
 
 <main role="main">
   <h1>This is the owners page</h1>
+  <h2>Our owners list</h2>
+
+  <ol class="list-group">
+    <% owners.forEach(o=> { %>
+
+    <li class="list-group-item">
+      name: <%= o.name %>,
+      email: <%= o.email %>
+      <!-- <button class="btn btn-primary">View</button> -->
+    </li>
+
+    <% }) %>
+  </ol>
+
 </main>
 
 <%- include("../partials/footer.ejs") %>
