@@ -2,6 +2,14 @@
 <%- include("../partials/nav.ejs") %>
 
 <main role="main">
+
+  <% if (result) { %>
+  <div class="alert alert-success" role="alert">
+    Owner created : <%= result.name %>
+  </div>
+  <% } %>
+
+
   <h1>add new owner</h1>
   <h2>sample form</h2>
 </main>

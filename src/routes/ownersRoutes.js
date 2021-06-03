@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 router.get('/new', (req, res) => {
   // sukurti tris naujus ownerius
-  const o1 = { name: 'bob', email: 'bob@email.com' };
+  const o1 = { name: 'bob1', email: 'bob1@email.com' };
   const newOwner = new Owner({
     name: o1.name,
     email: o1.email,
