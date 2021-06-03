@@ -25,7 +25,7 @@ router.get('/about', function (req, res) {
 router.get('/blog', function (req, res) {
   Post.find()
     .then((posts) => {
-      res.render('blog', {
+      res.render('blog/blog', {
         title: 'Our blog',
         page: 'blog',
         posts,
@@ -45,7 +45,7 @@ router.get('/contact', function (req, res) {
 // create blog page /blog/create
 // contact page
 router.get('/blog/create', function (req, res) {
-  res.render('createBlog', {
+  res.render('blog/createBlog', {
     title: 'Create new Post',
     page: 'createB',
   });
@@ -57,7 +57,7 @@ router.get('/single/:id', function (req, res) {
 
   Post.findById(blogId)
     .then((post) => {
-      res.render('singlePage', {
+      res.render('blog/singlePage', {
         title: post.title,
         page: 'single',
         post,
@@ -73,7 +73,7 @@ router.get('/single/edit/:id', function (req, res) {
 
   Post.findById(blogId)
     .then((post) => {
-      res.render('singlePageEdit', {
+      res.render('blog/singlePageEdit', {
         title: post.title,
         page: 'single_edit',
         post,
