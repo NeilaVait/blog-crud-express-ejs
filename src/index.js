@@ -7,15 +7,10 @@ const { mongoDbString } = require('./config/config');
 const Post = require('./models/post');
 
 const pageRoutes = require('./routes/pageRoutes');
+const ownersRoutes = require('./routes/ownersRoutes');
 const apiRoutes = require('./routes/api/apiRoutes');
 
-// register view engine
-app.set('view engine', 'ejs');
-// nustatom render view home dir
-app.set('views', 'src/views');
-// for req.body() to work
-app.use(express.json());
-
+//////////////////////////////////////////////////////////////////////////////////////////
 mongoose
   .connect(mongoDbString, {
     useNewUrlParser: true,
@@ -27,24 +22,20 @@ mongoose
   })
   .catch((err) => console.error(err.message));
 
+////////////////////////////////////////////////////////////////////////////////////
+// register view engine
+app.set('view engine', 'ejs');
+// nustatom render view home dir
+app.set('views', 'src/views');
+// for req.body() to work
+app.use(express.json());
+
+/////////////////////////////////////////////////////////////////////////////////////
 // pages routes
 app.use('/', pageRoutes);
 
-//    kas ivesta i adresa
-app.get('/owners', (req, res) => {
-  //            koks kelias
-  res.render('owners/index', {
-    title: 'Owners',
-    page: 'owners',
-  });
-});
-
-app.get('/owners/new', (req, res) => {
-  res.render('owners/new', {
-    title: 'Add owner',
-    page: 'owners_new',
-  });
-});
+// owner routes
+app.use('/owners', ownersRoutes);
 
 const staticPath = path.join(__dirname, 'static');
 // statine direktorija, css, js, img ir kt statiniam failam
