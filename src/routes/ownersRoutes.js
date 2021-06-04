@@ -5,7 +5,7 @@ const Owner = require('../models/owner');
 
 router.get('/', (req, res) => {
   // was there a delete
-  const msg = req.query.msg;
+  const feedback = req.query;
 
   // get all owners from db
   Owner.find()
@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
         title: 'Owners',
         page: 'owners',
         owners,
-        msg,
+        feedback,
       });
     })
     .catch((err) => console.error(err));
@@ -37,7 +37,7 @@ router.post('/new', (req, res) => {
   newOwner
     .save()
     .then((result) => {
-      res.redirect('/owners?msg=created');
+      res.redirect('/owners?msg=created&name=' + result.name);
     })
     .catch((err) => res.send('oops did not save', err));
 });
@@ -61,8 +61,30 @@ router.get('/single/:id', function (req, res) {
 // delete form
 router.post('/delete/:id', (req, res) => {
   Owner.findByIdAndDelete(req.params.id)
-    .then((result) => res.redirect('/owners?msg=deleted'))
+    .then((result) => res.redirect('/owners?msg=deleted&name=' + result.name))
     .catch((err) => res.send(`delete failed ${err}`));
+});
+
+// single edit owner route
+router.get('/edit/:id', function (req, res) {
+  const ownerId = req.params.id;
+
+  Owner.findById(ownerId)
+    .then((owner) => {
+      res.render('owners/edit', {
+        title: 'Edit',
+        page: 'single_owner_edit',
+        owner,
+      });
+    })
+    // redirect if not found
+    .catch((err) => console.error(err));
+});
+
+router.post('/edit/:id', (req, res) => {
+  Owner.findByIdAndUpdate(req.params.id, req.body)
+    .then((updatedOwner) => res.redirect('/owners?msg=updated&name=' + updatedOwner.name))
+    .catch((err) => res.status(400).json(err.message));
 });
 
 module.exports = router;

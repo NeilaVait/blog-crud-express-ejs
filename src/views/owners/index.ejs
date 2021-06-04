@@ -2,15 +2,15 @@
 <%- include("../partials/nav.ejs") %>
 
 <main role="main">
-  <% if (locals.msg && msg === 'created') { %>
+  <% if (locals.feedback && feedback.msg === 'created') { %>
   <div class="alert alert-success" role="alert">
-    Owner created
+    Owner <%= feedback.name %> created
   </div>
   <% } %>
 
-  <% if (locals.msg && msg === 'deleted') { %>
+  <% if (locals.feedback && feedback.msg === 'deleted') { %>
   <div class="alert alert-danger" role="alert">
-    Owner Deleted, Sad
+    Owner <strong><%= feedback.name %></strong> Deleted, Sad
   </div>
   <% } %>
 
@@ -25,7 +25,8 @@
       <div>
         name: <%= o.name %>,
         email: <%= o.email %>
-        <small><%= o.createdAt.toLocaleTimeString() %></small>
+        <br><small>created: <%= o.createdAt.toLocaleString() %></small>
+        <br><small>edited: <%= o.updatedAt.toLocaleString() %></small>
       </div>
 
       <div>
