@@ -2,13 +2,13 @@
 <%- include("../partials/nav.ejs") %>
 
 <main role="main">
-  <% if (locals.result) { %>
+  <% if (locals.msg && msg === 'created') { %>
   <div class="alert alert-success" role="alert">
-    Owner created : <%= result.name %>
+    Owner created
   </div>
   <% } %>
 
-  <% if (locals.msg) { %>
+  <% if (locals.msg && msg === 'deleted') { %>
   <div class="alert alert-danger" role="alert">
     Owner Deleted, Sad
   </div>
