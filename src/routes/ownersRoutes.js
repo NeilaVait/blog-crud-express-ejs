@@ -30,20 +30,7 @@ router.post('/new', (req, res) => {
 });
 
 // single owner route
-router.get('/single/:id', function (req, res) {
-  const ownerId = req.params.id;
-
-  Owner.findById(ownerId)
-    .then((owner) => {
-      res.render('owners/single', {
-        title: 'Single',
-        page: 'single_owner',
-        owner,
-      });
-    })
-    // redirect if not found
-    .catch((err) => console.error(err));
-});
+router.get('/single/:id', ownersControllers.owners_single);
 
 // delete form
 router.post('/delete/:id', (req, res) => {
