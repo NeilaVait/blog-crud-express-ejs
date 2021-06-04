@@ -1,10 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const Post = require('../models/post');
-
-const blogsControllers = require('../controllers/blogsControllers');
-
 // home page
 router.get('/', function (req, res) {
   // paimti index.ejs faila is views direktorijos
@@ -22,9 +18,6 @@ router.get('/about', function (req, res) {
   });
 });
 
-// blog page
-router.get('/blog', blogsControllers.blogs_index);
-
 // contact page
 router.get('/contact', function (req, res) {
   res.render('contact', {
@@ -32,14 +25,5 @@ router.get('/contact', function (req, res) {
     page: 'contact',
   });
 });
-
-// create blog page /blog/create
-router.get('/blog/create', blogsControllers.blog_create);
-
-// singlePage
-router.get('/single/:id', blogsControllers.blog_single);
-
-//singlePageEdit
-router.get('/single/edit/:id', blogsControllers.blog_single_edit);
 
 module.exports = router;

@@ -4,11 +4,12 @@ const path = require('path');
 
 const mongoose = require('mongoose');
 const { mongoDbString } = require('./config/config');
-const Post = require('./models/post');
+// const Post = require('./models/post');
 
 const pageRoutes = require('./routes/pageRoutes');
 const ownersRoutes = require('./routes/ownersRoutes');
 const apiRoutes = require('./routes/api/apiRoutes');
+const blogsRoutes = require('./routes/blogsRoutes');
 
 //////////////////////////////////////////////////////////////////////////////////////////
 mongoose
@@ -31,12 +32,14 @@ app.set('views', 'src/views');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-/////////////////////////////////////////////////////////////////////////////////////
-// pages routes
+//////////////////////////////////////// pages routes
 app.use('/', pageRoutes);
 
 // owner routes
 app.use('/owners', ownersRoutes);
+
+// blog routes
+app.use('/blog', blogsRoutes);
 
 const staticPath = path.join(__dirname, 'static');
 // statine direktorija, css, js, img ir kt statiniam failam
