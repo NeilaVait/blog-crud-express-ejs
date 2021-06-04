@@ -3,23 +3,10 @@ const router = express.Router();
 
 const Owner = require('../models/owner');
 
-router.get('/', (req, res) => {
-  // was there a delete
-  const feedback = req.query;
+// load controllers
+const ownersControllers = require('../controllers/ownersController');
 
-  // get all owners from db
-  Owner.find()
-    .sort({ createdAt: -1 })
-    .then((owners) => {
-      res.render('owners/index', {
-        title: 'Owners',
-        page: 'owners',
-        owners,
-        feedback,
-      });
-    })
-    .catch((err) => console.error(err));
-});
+router.get('/', ownersControllers.owners_index);
 
 // formos parodymo route
 router.get('/new', (req, res) => {

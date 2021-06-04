@@ -10,5 +10,4 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {},
-  overrides: [{ excludeFiles: '*.ejs' }],
 };
