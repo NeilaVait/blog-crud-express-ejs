@@ -3,6 +3,8 @@ const router = express.Router();
 
 const Post = require('../models/post');
 
+const blogsControllers = require('../controllers/blogsControllers');
+
 // home page
 router.get('/', function (req, res) {
   // paimti index.ejs faila is views direktorijos
@@ -21,18 +23,7 @@ router.get('/about', function (req, res) {
 });
 
 // blog page
-
-router.get('/blog', function (req, res) {
-  Post.find()
-    .then((posts) => {
-      res.render('blog/blog', {
-        title: 'Our blog',
-        page: 'blog',
-        posts,
-      });
-    })
-    .catch((err) => console.error(err.message));
-});
+router.get('/blog', blogsControllers.blogs_index);
 
 // contact page
 router.get('/contact', function (req, res) {
@@ -43,43 +34,12 @@ router.get('/contact', function (req, res) {
 });
 
 // create blog page /blog/create
-// contact page
-router.get('/blog/create', function (req, res) {
-  res.render('blog/createBlog', {
-    title: 'Create new Post',
-    page: 'createB',
-  });
-});
+router.get('/blog/create', blogsControllers.blog_create);
 
 // singlePage
-router.get('/single/:id', function (req, res) {
-  const blogId = req.params.id;
-
-  Post.findById(blogId)
-    .then((post) => {
-      res.render('blog/singlePage', {
-        title: post.title,
-        page: 'single',
-        post,
-      });
-    })
-    // redirect if not found
-    .catch((err) => res.redirect('/blog'));
-});
+router.get('/single/:id', blogsControllers.blog_single);
 
 //singlePageEdit
-router.get('/single/edit/:id', function (req, res) {
-  const blogId = req.params.id;
-
-  Post.findById(blogId)
-    .then((post) => {
-      res.render('blog/singlePageEdit', {
-        title: post.title,
-        page: 'single_edit',
-        post,
-      });
-    })
-    .catch((err) => console.error(err));
-});
+router.get('/single/edit/:id', blogsControllers.blog_single_edit);
 
 module.exports = router;

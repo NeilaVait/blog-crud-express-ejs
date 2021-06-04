@@ -9,56 +9,20 @@ const ownersControllers = require('../controllers/ownersController');
 router.get('/', ownersControllers.owners_index);
 
 // formos parodymo route
-router.get('/new', (req, res) => {
-  res.render('owners/new', {
-    title: 'Add owner',
-    page: 'owners_new',
-  });
-});
+router.get('/new', ownersControllers.owners_create);
 
 // formos apdorojimo route
-router.post('/new', (req, res) => {
-  console.log('req.body', req.body);
-
-  const newOwner = new Owner(req.body);
-  newOwner
-    .save()
-    .then((result) => {
-      res.redirect('/owners?msg=created&name=' + result.name);
-    })
-    .catch((err) => res.send('oops did not save', err));
-});
+router.post('/new', ownersControllers.owners_create_post);
 
 // single owner route
 router.get('/single/:id', ownersControllers.owners_single);
 
 // delete form
-router.post('/delete/:id', (req, res) => {
-  Owner.findByIdAndDelete(req.params.id)
-    .then((result) => res.redirect('/owners?msg=deleted&name=' + result.name))
-    .catch((err) => res.send(`delete failed ${err}`));
-});
+router.post('/delete/:id', ownersControllers.owners_delete);
 
 // single edit owner route
-router.get('/edit/:id', function (req, res) {
-  const ownerId = req.params.id;
+router.get('/edit/:id', ownersControllers.owners_edit);
 
-  Owner.findById(ownerId)
-    .then((owner) => {
-      res.render('owners/edit', {
-        title: 'Edit',
-        page: 'single_owner_edit',
-        owner,
-      });
-    })
-    // redirect if not found
-    .catch((err) => console.error(err));
-});
-
-router.post('/edit/:id', (req, res) => {
-  Owner.findByIdAndUpdate(req.params.id, req.body)
-    .then((updatedOwner) => res.redirect('/owners?msg=updated&name=' + updatedOwner.name))
-    .catch((err) => res.status(400).json(err.message));
-});
+router.post('/edit/:id', ownersControllers.owners_edit_post);
 
 module.exports = router;
