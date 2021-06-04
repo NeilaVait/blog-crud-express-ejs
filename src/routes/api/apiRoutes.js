@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const blogDb = require('../../data/blogDb');
 const Post = require('../../models/post');
 
 // blog api

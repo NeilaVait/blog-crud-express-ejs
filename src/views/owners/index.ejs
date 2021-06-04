@@ -2,19 +2,11 @@
 <%- include("../partials/nav.ejs") %>
 
 <main role="main">
-  <% if (locals.feedback && feedback.msg === 'created') { %>
-  <div class="alert alert-success" role="alert">
-    Owner <%= feedback.name %> created
-  </div>
-  <% } %>
-
-  <% if (locals.feedback && feedback.msg === 'deleted') { %>
-  <div class="alert alert-danger" role="alert">
-    Owner <strong><%= feedback.name %></strong> Deleted, Sad
-  </div>
-  <% } %>
 
   <h1>This is the owners page</h1>
+
+  <%- include("_msg") %>
+
   <h2>Our owners list <a class="btn btn-info float-right" <%= page === 'owners_new' ? 'active' : "" %> href="
       /owners/new">Add owner</a></h2>
 

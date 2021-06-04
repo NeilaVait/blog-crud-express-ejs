@@ -1,0 +1,11 @@
+<% if (locals.feedback && feedback.msg === 'created') { %>
+<%- include("_alert", {className: "success", action: "created"}) %>
+<% } %>
+
+<% if (locals.feedback && feedback.msg === 'deleted') { %>
+<%- include("_alert", {className: "danger", action: "deleted"}) %>
+<% } %>
+
+<% if (locals.feedback && feedback.msg === 'updated') { %>
+<%- include("_alert", {className: "info", action: "updated"}) %>
+<% } %>
