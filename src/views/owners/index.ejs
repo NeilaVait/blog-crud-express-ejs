@@ -10,6 +10,8 @@
   <h2>Our owners list <a class="btn btn-info float-right" <%= page === 'owners_new' ? 'active' : "" %> href="
       /owners/new">Add owner</a></h2>
 
+  <%- include("_searchForm") %>
+
   <ol class="list-group">
     <% owners.forEach(o=> { %>
 

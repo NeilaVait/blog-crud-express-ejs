@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const Owner = require('../models/owner');
-
 // load controllers
 const ownersControllers = require('../controllers/ownersController');
 
@@ -23,6 +21,9 @@ router.post('/delete/:id', ownersControllers.owners_delete);
 // single edit owner route
 router.get('/edit/:id', ownersControllers.owners_edit);
 
+// single edit owner post
 router.post('/edit/:id', ownersControllers.owners_edit_post);
+
+router.get('/search', ownersControllers.owners_search);
 
 module.exports = router;

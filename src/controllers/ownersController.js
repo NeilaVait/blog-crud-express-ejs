@@ -80,6 +80,12 @@ const owners_edit_post = (req, res) => {
     .catch((err) => res.status(400).json(err.message));
 };
 
+const owners_search = (req, res) => {
+  // get budu siunciamos formos parametrai yra req.query ne req.body
+  console.log(req.query);
+  res.send('you are in right place');
+};
+
 module.exports = {
   owners_index,
   owners_single,
@@ -88,4 +94,5 @@ module.exports = {
   owners_edit,
   owners_edit_post,
   owners_create,
+  owners_search,
 };
